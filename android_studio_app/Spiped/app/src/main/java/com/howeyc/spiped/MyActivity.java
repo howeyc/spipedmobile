@@ -10,6 +10,9 @@ import android.webkit.ValueCallback;
 import android.net.Uri;
 import android.content.Intent;
 
+import android.view.Menu;
+import android.view.MenuItem;
+
 import go.Go;
 import go.spipedmobile.Spipedmobile;
 
@@ -29,6 +32,34 @@ public class MyActivity extends Activity {
             Uri result = intent == null || resultCode != RESULT_OK ? null : intent.getData();  
             mUploadMessage.onReceiveValue(result);  
             mUploadMessage = null;  
+        }
+    }
+
+    public static final int MENU_PIPES = Menu.FIRST;
+    public static final int MENU_LICENSE = Menu.FIRST + 1;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        menu.add(Menu.NONE, MENU_PIPES, Menu.NONE, "Current Pipes");
+        menu.add(Menu.NONE, MENU_LICENSE, Menu.NONE, "License Info");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case MENU_PIPES:
+            browser.loadUrl("http://localhost:56056");
+            return true;
+            case MENU_LICENSE:
+            browser.loadUrl("http://localhost:56056/license.html");
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
         }
     }
 
