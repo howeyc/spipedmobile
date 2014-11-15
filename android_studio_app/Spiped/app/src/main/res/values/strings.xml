@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spiped</string>
+    <string name="e_text">Send something to go</string>
+    <string name="action_settings">Settings</string>
+    <string name="b_send">Send</string>
+    <string name="b_web">WebView</string>
+
+</resources>

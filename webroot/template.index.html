@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Spiped</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap-3.3.0/dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+
+  </head>
+
+  <body>
+	
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href = "/index.html">Spiped</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/index.html">Secure Pipes</a></li>
+            <li><a href="/license.html">License Info</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+   <div class="container">
+      <div class="content-header">
+        <div class="row">
+			<div class="col-xs-12">
+        		<h1>Spiped</h1>
+			</div>
+		</div>
+      </div>
+      <div class="page-content inset">
+        <div class="row">
+			<div class="col-xs-12">
+        		<h1>Current Pipes</h1>
+			</div>
+		</div>
+      <div class="row">
+      <div class="col-xs-12">
+	
+      <table id="listtable" class="table table-bordered table-hover paginated-table">
+        <thead>
+          <tr>
+            <th>Local Port</th>
+            <th>Target Dest</th>
+            <th>Stop</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $index, $var := .}}
+          <tr>
+            <td>{{$var.LocalPort}}</td>
+            <td>{{$var.TargetDest}}</td>
+            <td><a href="/stop/{{$index}}">Stop</a></td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+
+      <hr>
+
+        <div class="row">
+			<div class="col-xs-12">
+        		<h1>Create Pipe</h1>
+			</div>
+		</div>
+
+      <form method="POST" enctype="multipart/form-data" class="form-horizonal" action="/create">
+      <div class="form-group">
+        <label class="col-xs-2">Type</label>
+        <div class="col-xs-4">
+          <select type="text" class="form-control" name="Type">
+            <option value="enc">Encrypt</option>
+            <option value="dec">Decrypt</option>
+          </select>
+        </div>
+
+        <label class="col-xs-2">Port</label>
+        <div class="col-xs-4">
+          <input type="text" class="form-control" name="LocalPort">
+        </div>
+
+        <label class="col-xs-2">Key</label>
+        <div class="col-xs-10">
+          <input type="file" class="form-control" name="Key">
+        </div>
+
+        <label class="col-xs-2">Dest</label>
+        <div class="col-xs-10">
+          <input type="text" class="form-control" name="TargetDest" value="ip:port">
+        </div>
+        <div class="col-xs-6">
+          <input type="submit" class="btn btn-special btn-block" value="Create">
+        </div>
+
+      </div>
+      </form>
+
+      </div>
+      </div>
+      </div>
+   </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.0/dist/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
