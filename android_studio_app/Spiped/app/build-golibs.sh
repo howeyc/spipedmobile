@@ -30,8 +30,10 @@ fi
 # Check whether GOLANG is compiled with cross-compilation for arm
 if [ ! -f $GOROOT/bin/android_arm/go ]; then
         pushd $GOROOT/src
+set +e
         # Build GO for cross-compilation
         CC_FOR_TARGET=$ANDROID_NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc GOOS=android GOARCH=arm ./make.bash --no-clean
+set -e
         popd
 fi
 
