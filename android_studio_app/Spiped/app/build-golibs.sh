@@ -27,13 +27,15 @@ if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
         export GOROOT="$(pwd)/$tmpgo"
 fi
 
+# Make toolchain
+mkdir -p golib/ndk-toolchain
+$ANDROID_NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=golib/ndk-toolchain
+
 # Check whether GOLANG is compiled with cross-compilation for arm
 if [ ! -f $GOROOT/bin/android_arm/go ]; then
         pushd $GOROOT/src
-set +e
         # Build GO for cross-compilation
-        CC_FOR_TARGET=$ANDROID_NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc GOOS=android GOARCH=arm ./make.bash --no-clean
-set -e
+        CC_FOR_TARGET=$ORIG/golib/ndk-toolchain/bin/arm-linux-androideabi-gcc GOOS=android GOARCH=arm ./make.bash --no-clean
         popd
 fi
 
