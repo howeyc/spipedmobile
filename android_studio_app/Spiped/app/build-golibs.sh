@@ -56,6 +56,7 @@ pushd $GOPATH/src/github.com/howeyc/spipedmobile
 pushd webroot
 $GOPATH/bin/gobundle --recursive --compress --uncompress_on_init --retain_uncompressed --bundle="webroot" --package=assets --target=../assets/bundle.go bootstrap-3.3.0 jquery.min.js license.html template.index.html
 popd
+mkdir -p $ORIG/src/main/java/go/spiped
 CGO_ENABLED=0 $GOPATH/bin/gobind -lang=java github.com/howeyc/spipedmobile > $ORIG/src/main/java/go/spiped/Spipedmobile.java
 mkdir -p go_spiped
 CGO_ENABLED=0 $GOPATH/bin/gobind -lang=go github.com/howeyc/spipedmobile > go_spiped/go_spiped.go
