@@ -64,3 +64,4 @@ popd
 popd
 
 cd $ORIG
+rm -rf golib
