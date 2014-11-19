@@ -31,7 +31,7 @@ fi
 if [ ! -f $GOROOT/bin/android_arm/go ]; then
         pushd $GOROOT/src
         # Build GO for cross-compilation
-        GOOS=android GOARCH=arm ./make.bash --no-clean
+        CC_FOR_TARGET=$ANDROID_NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-gcc GOOS=android GOARCH=arm ./make.bash --no-clean
         popd
 fi
 
