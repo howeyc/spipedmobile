@@ -1,9 +1,9 @@
 package main
 
 import (
-	"code.google.com/p/go.mobile/app"
+	"golang.org/x/mobile/app"
 
-	_ "code.google.com/p/go.mobile/bind/java"
+	_ "golang.org/x/mobile/bind/java"
 	_ "github.com/howeyc/spipedmobile/go_spiped"
 )
 

@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+preBuild {
+    dependsOn 'buildNative'
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion "20.0.0"
@@ -18,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+task buildNative(type: Exec) {
+    outputs.upToDateWhen { false }
+    executable = './build-golibs.sh'
 }
 
 dependencies {

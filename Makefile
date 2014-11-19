@@ -27,11 +27,11 @@ assets/bundle.go: webroot/license.html webroot/template.index.html
 	cd webroot && gobundle --recursive --compress --uncompress_on_init --retain_uncompressed --bundle="webroot" --package=assets --target=../assets/bundle.go bootstrap-3.3.0 jquery.min.js license.html template.index.html
 
 clean:
-	rm assets/bundle.go
-	rm go_spiped/go_spiped.go
-	rm android_studio_app/Spiped/app/src/main/java/go/spiped/Spipedmobile.java
-	rm android_studio_app/Spiped/app/src/main/jniLibs/armeabi/libgojni.so
-	rm android_studio_app/Spiped/app/src/main/jniLibs/armeabi-v7a/libgojni.so
-	rm android_studio_app/Spiped/app/build/outputs/apk/app-debug.apk
-	rm app-debug.apk
+	rm -f assets/bundle.go
+	rm -f go_spiped/go_spiped.go
+	rm -f android_studio_app/Spiped/app/src/main/java/go/spiped/Spipedmobile.java
+	rm -f android_studio_app/Spiped/app/src/main/jniLibs/armeabi/libgojni.so
+	rm -f android_studio_app/Spiped/app/src/main/jniLibs/armeabi-v7a/libgojni.so
+	rm -f android_studio_app/Spiped/app/build/outputs/apk/app-debug.apk
+	rm -f app-debug.apk
 
