@@ -29,7 +29,7 @@ fi
 
 # Make toolchain
 mkdir -p golib/ndk-toolchain
-$ANDROID_NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=golib/ndk-toolchain
+$ANDROID_NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=golib/ndk-toolchain --toolchain=arm-linux-androideabi-4.8
 
 # Check whether GOLANG is compiled with cross-compilation for arm
 if [ ! -f $GOROOT/bin/android_arm/go ]; then
