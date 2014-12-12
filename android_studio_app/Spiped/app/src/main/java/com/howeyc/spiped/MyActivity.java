@@ -19,7 +19,7 @@ import go.spipedmobile.Spipedmobile;
 
 public class MyActivity extends Activity {
 
-    WebView browser;
+    private WebView browser;
 
     private ValueCallback<Uri> mUploadMessage;  
     private final static int FILECHOOSER_RESULTCODE=1;
@@ -61,6 +61,11 @@ public class MyActivity extends Activity {
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+	browser.saveState(outState);
     }
 
     @Override
@@ -107,6 +112,10 @@ public class MyActivity extends Activity {
             MyActivity.this.startActivityForResult( Intent.createChooser( i, "File Chooser" ), MyActivity.FILECHOOSER_RESULTCODE );
         }
         });
-        browser.loadUrl("http://localhost:56056");
+
+	if (savedInstanceState != null)
+                browser.restoreState(savedInstanceState);
+        else
+                browser.loadUrl("http://localhost:56056");
     }
 }

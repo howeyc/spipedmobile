@@ -10,6 +10,3 @@ Compatible with original Colin Percival's utilities
 
 [![Get it on F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdid=com.howeyc.spiped)
 
-TODO:
-
-* Fix crash on change of orientation.
