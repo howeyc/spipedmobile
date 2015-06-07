@@ -7,11 +7,12 @@ ORIG=$(pwd)
 if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
         mkdir -p "golib"
         tmpgo='golib/go'
+        tmpgoroot='golib/go'
         if [ ! -f "$tmpgo/bin/go" ]; then
                 # Download GOLANG v1.3.3
-                wget -O go.src.tar.gz https://golang.org/dl/go1.4rc1.src.tar.gz
+                wget -O go.src.tar.gz https://storage.googleapis.com/golang/go1.4.2.src.tar.gz
                 sha1=$(sha1sum go.src.tar.gz)
-                if [ "$sha1" != "ff8e7d78e85658251a36e45f944af70f226368ab  go.src.tar.gz" ]; then
+                if [ "$sha1" != "460caac03379f746c473814a65223397e9c9a2f6  go.src.tar.gz" ]; then
                         echo "go.src.tar.gz SHA1 checksum does not match!"
                         exit 1
                 fi
@@ -23,6 +24,14 @@ if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
                 ./make.bash --no-clean
                 popd
         fi
+        # Bootstrap 1.5
+        export GOROOT_BOOTSTRAP="$(pwd)/$tmpgo"
+        mkdir -p $tmpgo
+        git clone https://go.googlesource.com/go $tmpgoroot
+        # Build GO for host
+        pushd $tmpgoroot/src
+        ./make.bash --no-clean
+        
         # Add GO to the environment
         export GOROOT="$(pwd)/$tmpgo"
 fi
