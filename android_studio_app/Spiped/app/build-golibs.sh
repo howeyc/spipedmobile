@@ -28,8 +28,12 @@ if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
 fi
 
 # Make toolchain
+wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin
+chmod a+x android-ndk-r10e-linux-x86.bin
+$ORIG/android-ndk-r10e-linux-x86.bin
+
 mkdir -p golib/ndk-toolchain
-$ANDROID_NDK/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=golib/ndk-toolchain --toolchain=arm-linux-androideabi-4.8
+$ORIG/android-ndk-r10e/build/tools/make-standalone-toolchain.sh --platform=android-9 --install-dir=golib/ndk-toolchain --toolchain=arm-linux-androideabi-4.8
 
 # Check whether GOLANG is compiled with cross-compilation for arm
 if [ ! -f $GOROOT/bin/android_arm/go ]; then
