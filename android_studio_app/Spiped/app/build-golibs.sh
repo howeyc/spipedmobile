@@ -6,7 +6,7 @@ ORIG=$(pwd)
 # Check for GOLANG installation
 if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
         mkdir -p "golib"
-        tmpgo='golib/go'
+        tmpgo='golib/go14'
         tmpgoroot='golib/go'
         if [ ! -f "$tmpgo/bin/go" ]; then
                 # Download GOLANG v1.3.3
@@ -26,7 +26,6 @@ if [ -z $GOROOT ] || [[ $(go version) != go\ version\ go1.4beta1* ]] ; then
         fi
         # Bootstrap 1.5
         export GOROOT_BOOTSTRAP="$(pwd)/$tmpgo"
-        mkdir -p $tmpgo
         git clone https://go.googlesource.com/go $tmpgoroot
         # Build GO for host
         pushd $tmpgoroot/src
