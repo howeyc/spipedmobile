@@ -1,6 +1,8 @@
 spipedmobile
 =======
 
+ABANDONED: I use a program that gives me terminal access on Android, so I use that to run spipe now.
+
 Spiped Mobile, a secure pipe on your Android device.
 
 ![Image](android_studio_app/Spiped/app/src/main/web_hi_res_512.png?raw=true)
